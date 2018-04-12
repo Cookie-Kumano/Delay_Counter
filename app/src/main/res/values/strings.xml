@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">遅刻カウンタ</string>
+
+    <string name="title_activity_ee">EEActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="about">
+        このアプリは、くっきーが自分の出席状況を計算するために開発したものです。 \n
+        このアプリに表示される遅刻・欠課・欠席数はすべてユーザーの入力によるものであり、学校側が保持するデータを用いているわけではありません。
+        よって、ユーザーの入力ミスや入力忘れなどにより、実際の記録とかけ離れてしまう場合もあります。\n
+        そのため、このアプリの利用は自己責任ということになります。\n \n
+        【出席状況】に表示される「"操行"に基づく回数」は、学習院生徒・教務課が定める成績基準にもとづき計算しており、欠課数は \n \n
+        欠課数 + 遅刻数 ÷ 2 \n　\n
+        となっています。 \n
+        また、多遅刻・多欠課・多欠席や、留学からの帰国などの可能性を考慮し、各項目の目標値を変更できるように設計してあります。
+    </string>
+</resources>
