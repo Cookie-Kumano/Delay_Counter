@@ -6,7 +6,7 @@ android {
         applicationId "jp.gr.java_conf.cookie91.delay_counter"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 9
+        versionCode 10
         versionName "1.0b"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

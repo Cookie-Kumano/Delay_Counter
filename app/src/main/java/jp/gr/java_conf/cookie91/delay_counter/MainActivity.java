@@ -28,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
     TextView delayView;
     TextView cuttingView;
     TextView absenceView;
+    TextView leaveView;
 
     int delayCount = 0;
     int cuttingCount = 0;
     int absenceCount = 0;
+    int leaveCount = 0;
     int delayLimit = 20;
     int cuttingLimit = 40;
     int absenceLimit = 40;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         delayView = (TextView) findViewById(R.id.delayView);
         cuttingView = (TextView) findViewById(R.id.cuttingView);
         absenceView = (TextView) findViewById(R.id.absenceView);
+        leaveView = (TextView) findViewById(R.id.leaveView);
 
         loadSettings(getApplicationContext());
 
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.register:
-                final String[] items = {"遅刻", "欠課", "欠席"};
+                final String[] items = {"遅刻", "欠課", "欠席", "早退"};
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("今日はどうなさいましたの？")
                         .setItems(items, new DialogInterface.OnClickListener() {
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                                     situation = "欠課";
                                 if (which == 2)
                                     situation = "欠席";
+                                if (which == 3)
+                                    situation = "早退";
                                 aDialog();
                             }
                         })
@@ -80,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.share:
-                String sharedText = "私の遅刻回数は"+ delayCount + "回/" + delayLimit + "回\n" +
+                int dlCount = delayCount + leaveCount;
+                String sharedText = "私の遅刻･早退回数は"+ dlCount + "回/" + delayLimit + "回\n" +
                         "私の欠課回数は" + cuttingCount + "回/" + cuttingLimit + "回\n" +
                         "私の欠席回数は" + absenceCount + "回/" + absenceLimit + "回\n" +
                         "です。 \n \n この出席状況は くっきー が開発したカウントアプリの算出結果に基づいています。\n"+
@@ -111,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder alr = new AlertDialog.Builder(MainActivity.this);
 
                 TextView delayView_D = (TextView) view.findViewById(R.id.delayView_D);
-                delayView_D.setText(String.valueOf(delayCount));
+                delayView_D.setText(String.valueOf(delayCount + leaveCount));
 
                 TextView delayLimitView = (TextView) view.findViewById(R.id.delayLimitView);
                 delayLimitView.setText(String.valueOf(delayLimit));
@@ -132,11 +138,13 @@ public class MainActivity extends AppCompatActivity {
                 absenceSView.setText(String.valueOf(absenceCount));
 
                 String del = String.valueOf(delayCount);
+                String lea = String.valueOf(leaveCount);
                 String cut = String.valueOf(cuttingCount);
                 BigDecimal bd = new BigDecimal(del);
                 BigDecimal bd1 = new BigDecimal(cut);
-                BigDecimal bd2 = new BigDecimal("0.5");
-                BigDecimal cus = bd1.add(bd.multiply(bd2));
+                BigDecimal bd2 = new BigDecimal(lea);
+                BigDecimal bd3 = new BigDecimal("0.5");
+                BigDecimal cus = bd1.add((bd.add(bd2)).multiply(bd3));
                 BigDecimal result = cus.setScale(0, BigDecimal.ROUND_HALF_UP);
 
                 TextView cuttingSView = (TextView) view.findViewById(R.id.cuttingSView);
@@ -153,23 +161,25 @@ public class MainActivity extends AppCompatActivity {
         delayView.setText(String.valueOf(delayCount));
         cuttingView.setText(String.valueOf(cuttingCount));
         absenceView.setText(String.valueOf(absenceCount));
-        // 遅刻・欠席・欠課回数により上部メッセージ変更を実装。
+        leaveView.setText(String.valueOf(leaveCount));
+        //TODO: 遅刻・欠課・欠席・早退回数により上部メッセージ変更を実装。
     }
 
-    private void saveSettings(Context context, int delayCount, int cuttingCount, int absenceCount, int delayLimit, int cuttingLimit, int absenceLimit) {
+    private void saveSettings(Context context, int delayCount, int cuttingCount, int absenceCount, int leaveCount, int delayLimit, int cuttingLimit, int absenceLimit) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sp.edit();
 
         editor.putInt("DELAY", delayCount)
                 .putInt("CUTTING", cuttingCount)
                 .putInt("ABSENCE", absenceCount)
+                .putInt("LEAVE", leaveCount)
                 .putInt("DLIMIT", delayLimit)
                 .putInt("CLIMIT", cuttingLimit)
                 .putInt("ALIMIT", absenceLimit);
 
         editor.commit();
 
-        Toast.makeText(MainActivity.this, "出席状況を適用しましたっ！\n" + "遅刻: " + delayCount + "\n欠課: " + cuttingCount + "\n欠席: " + absenceCount, Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "出席状況を適用しましたっ！\n" + "遅刻: " + delayCount + "\n欠課: " + cuttingCount + "\n欠席: " + absenceCount + "\n早退: " + leaveCount, Toast.LENGTH_LONG).show();
     }
 
     public void loadSettings(Context context) {
@@ -177,13 +187,14 @@ public class MainActivity extends AppCompatActivity {
         delayCount = sp.getInt("DELAY", 0);
         cuttingCount = sp.getInt("CUTTING", 0);
         absenceCount = sp.getInt("ABSENCE", 0);
+        leaveCount = sp.getInt("LEAVE", 0);
         delayLimit = sp.getInt("DLIMIT", 20);
         cuttingLimit = sp.getInt("CLIMIT", 40);
         absenceLimit = sp.getInt("ALIMIT", 40);
 
         changeText();
 
-        Toast.makeText(MainActivity.this, "出席状況をロードしましたっ！\n" + "遅刻: " + delayCount + "\n欠課: " + cuttingCount + "\n欠席: " + absenceCount, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "出席状況をロードしましたっ！\n" + "遅刻: " + delayCount + "\n欠課: " + cuttingCount + "\n欠席: " + absenceCount + "\n早退: " + leaveCount, Toast.LENGTH_SHORT).show();
     }
 
     private void aDialog() {
@@ -199,10 +210,12 @@ public class MainActivity extends AppCompatActivity {
                             cuttingCount++;
                         } else if (situation.equals("欠席")) {
                             absenceCount++;
+                        } else if (situation.equals("早退")) {
+                            leaveCount++;
                         }
 
                         changeText();
-                        saveSettings(getApplicationContext(), delayCount, cuttingCount, absenceCount, delayLimit, cuttingLimit, absenceLimit);
+                        saveSettings(getApplicationContext(), delayCount, cuttingCount, absenceCount, leaveCount, delayLimit, cuttingLimit, absenceLimit);
                     }
                 })
                 .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {

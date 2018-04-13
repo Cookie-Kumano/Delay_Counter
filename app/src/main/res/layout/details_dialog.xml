@@ -27,7 +27,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="遅刻回数"
+                android:text="遅刻･早退回数"
                 android:textSize="24sp" />
 
             <TextView

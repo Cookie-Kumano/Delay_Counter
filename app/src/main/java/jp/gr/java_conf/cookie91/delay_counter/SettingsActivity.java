@@ -32,13 +32,14 @@ public class SettingsActivity extends AppCompatActivity {
     LinearLayout counter;
     LinearLayout about;
 
-    int count = 0;
     String item;
     String situation;
 
+    int count = 0;
     int delayCount = 0;
     int cuttingCount = 0;
     int absenceCount = 0;
+    int leaveCount = 0;
     int delayLimit = 0;
     int cuttingLimit = 0;
     int absenceLimit = 0;
@@ -80,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if (count >= 10){
                     Intent i = new Intent(SettingsActivity.this, EEActivity.class);
                     startActivity(i);
+                    count = 0;
                     break;
                 }
                 break;
@@ -105,7 +107,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (item.equals("遅刻"))
+                        if (item.equals("遅刻 ･ 早退"))
                             delayLimit = np.getValue();
                         if (item.equals("欠課"))
                             cuttingLimit = np.getValue();
@@ -119,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (item.equals("遅刻"))
+                        if (item.equals("遅刻 ･ 早退"))
                             delayLimit = 20;
                         if (item.equals("欠課"))
                             cuttingLimit = 40;
@@ -149,6 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
                             delayCount = 0;
                             cuttingCount = 0;
                             absenceCount = 0;
+                            leaveCount = 0;
                         }
 
                         changeandsave();
@@ -169,7 +172,7 @@ public class SettingsActivity extends AppCompatActivity {
         cuttingLimitView.setText(String.valueOf(cuttingLimit));
         absenceLimitView.setText(String.valueOf(absenceLimit));
 
-        saveSettings(getApplicationContext(), delayCount, cuttingCount, absenceCount, delayLimit, cuttingLimit, absenceLimit);
+        saveSettings(getApplicationContext(), delayCount, cuttingCount, absenceCount, leaveCount, delayLimit, cuttingLimit, absenceLimit);
     }
 
     public void loadSettings(Context context) {
@@ -177,25 +180,27 @@ public class SettingsActivity extends AppCompatActivity {
         delayCount = sp.getInt("DELAY", 0);
         cuttingCount = sp.getInt("CUTTING", 0);
         absenceCount = sp.getInt("ABSENCE", 0);
+        leaveCount = sp.getInt("LEAVE", 0);
         delayLimit = sp.getInt("DLIMIT", 20);
         cuttingLimit = sp.getInt("CLIMIT", 40);
         absenceLimit = sp.getInt("ALIMIT", 40);
     }
 
-    private void saveSettings(Context context, int delayCount, int cuttingCount, int absenceCount, int delayLimit, int cuttingLimit, int absenceLimit) {
+    private void saveSettings(Context context, int delayCount, int cuttingCount, int absenceCount, int leaveCount, int delayLimit, int cuttingLimit, int absenceLimit) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sp.edit();
 
         editor.putInt("DELAY", delayCount)
                 .putInt("CUTTING", cuttingCount)
                 .putInt("ABSENCE", absenceCount)
+                .putInt("LEAVE", leaveCount)
                 .putInt("DLIMIT", delayLimit)
                 .putInt("CLIMIT", cuttingLimit)
                 .putInt("ALIMIT", absenceLimit);
 
         editor.commit();
 
-        Toast.makeText(SettingsActivity.this, "設定を保存しました！", Toast.LENGTH_LONG).show();
+        Toast.makeText(SettingsActivity.this, "設定を保存しましたっ！", Toast.LENGTH_LONG).show();
     }
 
 
