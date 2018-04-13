@@ -26,7 +26,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:text="遅刻･早退回数"
                 android:textSize="24sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:text="欠課回数"
                 android:textSize="24sp" />
 
@@ -109,7 +109,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:text="欠席回数"
                 android:textSize="24sp" />
 
@@ -159,7 +159,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:text="欠席回数"
                 android:textSize="24sp" />
 
@@ -184,7 +184,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="16dp"
+                android:paddingLeft="8dp"
                 android:text="欠課回数"
                 android:textSize="24sp" />
 
