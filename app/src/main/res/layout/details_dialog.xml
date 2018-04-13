@@ -7,13 +7,13 @@
     android:padding="16dp">
 
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:text="あなたの状況"
-            android:textColor="@color/colorAccent" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text="あなたの状況"
+        android:textColor="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +26,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
                 android:text="遅刻･早退回数"
                 android:textSize="24sp" />
 
@@ -67,7 +66,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
                 android:text="欠課回数"
                 android:textSize="24sp" />
 
@@ -109,7 +107,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
                 android:text="欠席回数"
                 android:textSize="24sp" />
 
@@ -140,13 +137,13 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:text='"操行"に基づく回数'
-            android:textColor="@color/colorAccent" />
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
+        android:text='"操行"に基づく回数'
+        android:textColor="@color/colorAccent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -159,7 +156,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
                 android:text="欠席回数"
                 android:textSize="24sp" />
 
@@ -184,7 +180,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
                 android:text="欠課回数"
                 android:textSize="24sp" />
 
