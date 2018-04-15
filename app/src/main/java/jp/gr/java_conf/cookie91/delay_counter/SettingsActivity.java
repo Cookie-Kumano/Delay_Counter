@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dSet:
-                item = "遅刻";
+                item = "遅刻 ･ 早退";
                 showDialog();
                 break;
             case R.id.cSet:
@@ -104,6 +104,13 @@ public class SettingsActivity extends AppCompatActivity {
                 final NumberPicker np = (NumberPicker) view.findViewById(R.id.numberPicker);
                 np.setMaxValue(40);
                 np.setMinValue(0);
+
+                if (item.equals("遅刻 ･ 早退"))
+                    np.setValue(delayLimit);
+                if (item.equals("欠課"))
+                    np.setValue(cuttingLimit);
+                if (item.equals("欠席"))
+                    np.setValue(absenceLimit);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                 builder.setTitle("目標値を設定")
@@ -186,8 +193,11 @@ public class SettingsActivity extends AppCompatActivity {
         absenceCount = sp.getInt("ABSENCE", 0);
         leaveCount = sp.getInt("LEAVE", 0);
         delayLimit = sp.getInt("DLIMIT", 20);
+        delayLimitView.setText(String.valueOf(delayLimit));
         cuttingLimit = sp.getInt("CLIMIT", 40);
+        cuttingLimitView.setText(String.valueOf(cuttingLimit));
         absenceLimit = sp.getInt("ALIMIT", 40);
+        absenceLimitView.setText(String.valueOf(absenceLimit));
     }
 
     private void saveSettings(Context context, int delayCount, int cuttingCount, int absenceCount, int leaveCount, int delayLimit, int cuttingLimit, int absenceLimit) {
