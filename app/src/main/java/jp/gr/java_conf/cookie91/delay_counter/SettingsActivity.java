@@ -23,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView delayLimitView;
     TextView cuttingLimitView;
     TextView absenceLimitView;
+    TextView versionView;
 
     LinearLayout dSet;
     LinearLayout cSet;
@@ -51,6 +52,9 @@ public class SettingsActivity extends AppCompatActivity {
         delayLimitView = (TextView) findViewById(R.id.delayLimitView);
         cuttingLimitView = (TextView) findViewById(R.id.cuttingLimitView);
         absenceLimitView = (TextView) findViewById(R.id.absenceLimitView);
+        versionView = (TextView) findViewById(R.id.version);
+        String versionName = BuildConfig.VERSION_NAME;
+        versionView.setText("遅刻カウンタ v" + versionName);
         loadSettings(getApplicationContext());
     }
 
