@@ -23,15 +23,6 @@
             android:layout_height="match_parent"
             app:srcCompat="@drawable/cookie_apps_txt" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="monospace"
-            android:text="Developed by Cookie"
-            android:textSize="18sp" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
